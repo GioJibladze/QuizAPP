@@ -1,0 +1,14 @@
+*{
+  box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+
+.quiz-card {
+    transition: transform 0.2s;
+  }
+  .quiz-card:hover {
+    transform: scale(1.03);
+  }
