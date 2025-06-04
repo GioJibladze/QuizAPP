@@ -13,6 +13,35 @@ const quizzesInfo = [
     { name: "Biology", icon: "bi-fingerprint", description: "Dive into the science of life and living organisms"}
   ];
 
+document.getElementById('restartBtn').onclick = function() {
+  currentIndex = 0;
+  score = 0;
+  resultEl.classList.add("d-none");
+  renderQuestion();
+};
+
+document.getElementById('homeTitle').onclick = function() {
+  quizContainer.classList.add("d-none");
+  quizListEl.classList.remove("d-none");
+  resultEl.classList.add("d-none");
+  searchEl.value = "";
+  currentQuiz = [];
+  currentIndex = 0;
+  score = 0;
+  renderQuizzes();
+};
+
+document.getElementById('stopQuizBtn').onclick = function() {
+  quizContainer.classList.add("d-none");
+  quizListEl.classList.remove("d-none");
+  resultEl.classList.add("d-none");
+  searchEl.value = "";
+  currentQuiz = [];
+  currentIndex = 0;
+  score = 0;
+  renderQuizzes();
+};
+
   const quizzes = {
     geography: [
       { question: "What is the capital city of Canada?", options: ["Toronto", "Vancouver", "Ottawa", "Montreal"], answer: "Ottawa" },
@@ -452,19 +481,23 @@ art: [
   }
 
   function renderQuestion() {
-    const q = currentQuiz[currentIndex];
-    questionEl.textContent = q.question;
-    optionsEl.innerHTML = "";
-    nextBtn.classList.add("d-none");
-
-    q.options.forEach(opt => {
-      const btn = document.createElement("button");
-      btn.className = "btn btn-outline-primary w-100 text-start mb-2";
-      btn.textContent = opt;
-      btn.onclick = () => handleAnswer(btn, q.answer);
-      optionsEl.appendChild(btn);
-    });
-  }
+      const q = currentQuiz[currentIndex];
+      questionEl.textContent = q.question;
+      optionsEl.innerHTML = "";
+      nextBtn.classList.add("d-none");
+      const questionNumberEl = document.getElementById('questionNumber');
+      if (questionNumberEl) {
+        questionNumberEl.textContent = (currentIndex + 1) + '.';
+      }
+  
+      q.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.className = "btn btn-outline-primary w-100 text-start mb-2";
+        btn.textContent = opt;
+        btn.onclick = () => handleAnswer(btn, q.answer);
+        optionsEl.appendChild(btn);
+      });
+    }
 
   function handleAnswer(selectedBtn, correct) {
     const buttons = optionsEl.querySelectorAll("button");
