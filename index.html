@@ -11,11 +11,7 @@
 <body class="bg-light">
 
   <div class="container py-4">
-    <select class="form-select w-auto ms-auto" id="languageToggle" onchange="toggleLanguage()">
-      <option value="en">English</option>
-      <option value="ka">Georgian</option>
-    </select>
-    <h1 class="mb-4 text-center">JibladzesQuiz</h1>
+    <h1 class="mb-4 text-center" id="homeTitle">JibladzesQuiz</h1>
 
     <input type="search" id="quizSearch" class="form-control mb-4" placeholder="Search quiz by name..." />
 
@@ -26,13 +22,19 @@
     <div id="quizContainer" class="d-none mt-4">
       <div class="card shadow">
         <div class="card-body">
-          <h4 id="question" class="card-title"></h4>
+         <div class="d-flex align-items-center mb-2">
+            <span id="questionNumber" class="me-2 fw-bold"></span>
+            <h4 id="question" class="card-title mb-0"></h4>
+         </div>
           <div id="options" class="my-3"></div>
-          <button id="nextBtn" class="btn btn-primary d-none">Next</button>
+          <button id="nextBtn" class="btn btn-primary mb-2">Next</button>
+          <button id="stopQuizBtn" class="btn btn-danger mb-2">Stop the Quiz</button>
           <div id="result" class="mt-4 d-none">
             <h5>Your Score: <span id="score"></span></h5>
-            <button class="btn btn-success" onclick="location.reload()">Restart</button>
+            <button class="btn btn-success stylish-restart" id="restartBtn">Restart</button>
           </div>
+
+          <div id="error" class="text-danger mt-2 d-none"></div>
         </div>
       </div>
     </div>
